@@ -1,0 +1,10 @@
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+marquee{
+  background-color: lightblue;
+  text-align: center;
+  border-radius: 50px;
+  font-size: 18px;
+  color: darkorange;
+}

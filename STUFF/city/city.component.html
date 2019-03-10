@@ -1,0 +1,87 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<app-header></app-header>
+ <br><br><br>
+
+<div class="sidebar">
+
+ <app-sidebar></app-sidebar>
+
+
+
+
+
+</div>
+
+<div class="content">
+<div class="container-fluid">
+<br><h5>DELIVERY CITY<hr></h5>
+
+ <div id="goback" (click)="goback();" style="float:left;cursor:pointer;display:none;"><br><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;Back
+</div><div style="float:right"><button type="button" (click)="hidedivbydefault();" class="btn btn-primary">Add New</button></div>
+ <br>
+
+  <div class='row' id="hidedivbydefault" style="display:none;" >
+<br>
+      <form #cityForm="ngForm"  (ngSubmit)="onSubmit(cityData,cityForm);">
+       <!-- <div class='col-sm-12'><label for="state"></label>
+
+    <select class="form-control" name="state" [(ngModel)]="deliveryCity.state">
+         <option value="0" selected="selected">State</option>
+                   <option *ngFor="let stateList of stateArray" [value]="stateList.id"> {{stateList.name}} </option>
+                 </select>
+
+
+
+
+
+
+       </div> -->
+       <div class='col-sm-12'><label for="city"></label> <input type='text' ng-pattern="/^[a-z 0-9 A-Z\s]*$/"  #cityRef="ngModel" required  [(ngModel)]="cityData.cityName" class='form-control'  name='city' placeholder="Enter City Name">
+
+         <div  *ngIf="cityRef.errors && (cityRef.dirty || cityRef.touched)" class="alert alert-danger">
+           <div [hidden] ="!cityRef.errors.required">Enter City</div>
+           <div [hidden] ="!cityRef.errors.pattern">Enter Valid City</div>
+
+
+         </div>
+
+       </div>
+       <!--<div class="col-sm-12"><label for="email"></label> <input type='text' [(ngModel)]="student.Email" class='form-control'  name='studentEmail'></div>
+       <div class="col-sm-12"><label for="address"></label> <input type='text' [(ngModel)]="student.Address" class='form-control'  name='studentAddress'></div>-->
+       <br>
+       <div class='col-sm-12'><button type="submit" class="btn btn-primary" >Submit</button></div>
+
+</form>
+</div>
+<br>
+<div class="row" id="hideTable1">
+   <div class="col-sm-3">
+        <input type="text" class="form-control" placeholder="Search anything" [(ngModel)]="searchText"/>
+     </div>
+     </div>
+
+<div class="table-responsive" id="hideTable" style="width:100%;">
+
+     <br>
+<table class="table table-bordered" >
+ <tr style="background-color: skyblue;"><th>City</th><th>Status</th><th>Update</th><th>Delete</th></tr>
+<tr *ngFor=" let cityList of cityArray  | filterAll: searchText">
+  <td>{{cityList.cityName}}</td>
+  <td>{{cityList.status}}</td>
+  <td style="display:none;">isdelete{{cityList.is_delete}}</td>
+  <td><i class="fa fa-pencil-square-o" aria-hidden="true"  style="cursor:pointer;" (click)="updateCity(cityList.id, cityList);" ></i>
+  </td>
+<td><i class="fa fa-trash" aria-hidden="true" (click)="deleteCity(cityList.id);"></i></td></tr>
+</table>
+</div>
+</div>
+</div>

@@ -1,0 +1,101 @@
+<div class="container mt-5">
+  <div class="row">
+    <marquee behavior="scroll" direction="right">please login in here</marquee>
+    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 mt-1">
+
+      <div class="card">
+        <div class="card-header bg-primary text-white text-center">
+          <h3 class="text-uppercase">signIn here</h3>
+
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmitted(f)" #f="ngForm">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="form-control"
+                #userContent
+                ngModel
+                name="username"
+                required
+              #username="ngModel">
+           <p class="alert alert-danger text-center" *ngIf="!username.valid && username.touched">Username is Required</p>
+            </div>
+            <div class="form-group">
+              <label for="pass">Password</label>
+              <input
+                type="password"
+                id="pass"
+                class="form-control"
+                name="pass"
+                ngModel
+                required
+              #pass="ngModel">
+            </div>
+            <div class="btn-tooltip">
+              <button type="submit" class="btn btn-primary mr-5"
+                      [disabled]="!f.valid" (click)="onlyEven = !onlyEven">SignIn</button> <!-- (click)="signIn()"-->
+              <button type="button" class="btn btn-success" (click)="onlyOdd = !onlyOdd"
+              >signUp</button> <!--(click)="signUp()"-->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6" >
+      <div class="card" *ngIf="onlyOdd" > <!--*ngIf="editMode"-->
+        <div class="card-header bg-success text-white text-center">
+          <h3 class="text-uppercase">Register here</h3>
+
+        </div>
+        <div class="card-body">
+          <form action="">
+            <div class="form-group">
+              <label for="">Username</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label for="">Password</label>
+              <input type="password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="">Confirm Password</label>
+              <input type="password" class="form-control">
+            </div>
+            <div class="btn-tooltip">
+              <button type="submit" class="btn btn-primary mr-5">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table table-hover" *ngIf="onlyEven"> <!--*ngIf="editMode1"-->
+    <thead class="table-dark">
+    <tr>
+      <th>Sno</th>
+      <th>Name</th>
+      <th>email</th>
+      <th>Address</th>
+      <th>phone Num</th>
+      <th>designation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--<tr *ngIf="let tabl of data">
+      <td>{{tabl.sno}}</td>
+    </tr>-->
+    <tr *ngFor="let da of data; let i = index">
+      <td>{{i + 1 }}</td>
+      <td>{{userContent.value}}</td>
+      <td>{{da.email}}</td>
+      <td>{{da.address}}</td>
+      <td>{{da.phoneNum}}</td>
+      <td>{{da.designation}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

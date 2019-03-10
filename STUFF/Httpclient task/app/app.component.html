@@ -1,0 +1,93 @@
+<!--
+<main>
+  <app-data-table></app-data-table>
+</main>-->
+<app-user-table></app-user-table>
+<hr>
+<button class="btn btn-success mb-2" (click)="onGet()" (click)="areaDisplayFlag = !areaDisplayFlag">Area Details</button>
+<marquee behavior="scroll" direction="right" *ngIf = "!areaDisplayFlag">Click above button to get area details</marquee>
+<hr>
+<div *ngIf="areaDisplayFlag">
+<table class="table table-bordered text-center table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>City Id </th>
+      <th>Id</th>
+      <th>Area Name</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+   <tr *ngFor="let area of areas.data">
+     <td>{{ area.cityId }}</td>
+     <td>{{area.id}}</td>
+     <td>{{ area.areaName }}</td>
+     <td>{{area.status }}</td>
+   </tr>
+  </tbody>
+</table>
+</div>
+<div class="container">
+    <div class="col-xs-12">
+        <div class="row">
+            <table class=" table table-bordered  table-hover text-center">
+                <thead class="table-info">
+                <tr>
+                    <th>City Id </th>
+                    <th>Id</th>
+                    <th>Area Name</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let area of users.data">
+                    <td>{{ area.cityId }}</td>
+                    <td>{{area.id}}</td>
+                    <td>{{ area.areaName }}</td>
+                    <td>{{area.status }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <table class="table table-bordered text-center table-hover">
+            <tr class="bg-primary">
+                <th>cityName</th>
+                <th>Status</th>
+                <th>id</th>
+            </tr>
+            <tbody>
+            <tr *ngFor="let user of userData.data">
+                <td>{{user.cityName}}</td>
+                <td>{{user.status}}</td>
+                <td>{{user.id}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+   <div class="table table-bordered table-striped table-hover text-center">
+       <thead class="table-dark text-white ">
+       <tr>
+           <th>Name</th>
+           <th>Mobile</th>
+           <th>Lastname</th>
+           <th class="d-none">Status</th>
+           <th>createdDate</th>
+           <th>verification</th>
+           <th>OTP</th>
+           <th>updatedDate</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr *ngFor="let customer of customersArray.data">
+           <td>{{customer.name}}</td>
+           <td><a href="tel:customer.mobile">{{customer.mobile}}</a></td>
+           <td><a href="mailto:customer.email">{{customer.email}}</a></td>
+           <td class="d-none"> {{customer.status}}</td>
+           <td>{{customer.createdDate | date: 'fullDate'}}</td>
+           <td>{{customer.verification}}</td>
+           <td>{{customer.OTP}}</td>
+           <td>{{customer.updatedDate | date: 'fullDate'}}</td>
+       </tr>
+       </tbody>
+   </div>

@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="bg-danger text-center p-1 mt-1">Welcome to Crawlink task</h1>
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="form-group">
+      <input type="text" placeholder="userName" name="user" class="form-control" ngModel required
+      minlength="6" #user="ngModel">
+      <!-- <p class="alert alert-danger" *ngIf="!user.valid && user.touched">userName is  Required</p>
+      <p [hidden]="user.errors.minlength"></p> -->
+      <div *ngIf="user.errors && user.touched" class="alert alert-danger">
+        <div [hidden]="!user.errors.required">userName required</div>
+        <div [hidden]="!user.errors.minlength">minlength is  required</div>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="email" placeholder="Enter mail" name="email" class="form-control" ngModel #email="ngModel"
+       email required>
+       <div *ngIf="email.errors && email.touched" class="alert alert-danger">
+         <div [hidden]="!email.errors.required"> email is required</div>
+
+       </div>
+    </div>
+
+    <div class="form-group">
+      <input type="number" placeholder="Enter your salary" name="salary" min="0" step="5000" class="form-control" ngModel>
+    </div>
+
+    <div class="form-group">
+      <input type="text" placeholder="Enter Designation" name="Designation" class="form-control" ngModel>
+    </div>
+
+    <div class="form-group">
+      <input type="text" placeholder="Domain" name="Domain" class="form-control" ngModel>
+    </div>
+    <div>
+      <label for="">hobbies</label>
+      <input type="checkbox" value="eating" class="form-check">Eating
+      <input type="checkbox" value="dancing" class="form-check">Dancing
+
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+    </div>
+  </div>
+
+
+  <button
+  class="btn btn-default"
+  type="button"
+(click)="suggestUserName()">Suggest an Username</button>
+<button type="button" class="btn btn-danger" (click)="onReset()">Reset</button>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-6"></div>
+<div class="col-sm-6">
+
+
+  <div *ngIf= submitted>
+    <p>UserName: {{data.userName}}</p>
+    <p>Eamil: {{data.email}}</p>
+    <p> Salary: {{data.salary}}</p>
+
+    <p> Designation: {{data.Designation}}</p>
+    <p> Domain: {{data.Domain}}</p>
+
+  </div>
+    </div>
+  </div>
+
+  <app-display
+  [display]="data"></app-display>
+
+
+

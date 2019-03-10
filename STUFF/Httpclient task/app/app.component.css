@@ -1,0 +1,10 @@
+marquee {
+  width: 100%;
+  padding: 10px 0;
+  background-color: lightblue;
+    border-radius: 50px;
+}
+.table{
+  width: 80%;
+  margin: 20px auto;
+}
